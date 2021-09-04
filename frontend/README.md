@@ -1,1 +1,3 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+Next.js based react frontend.
+
+It's goal is to gather replies from the different echo servers hosted with kubernetes and display them.
