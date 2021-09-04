@@ -1,0 +1,135 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firsttest-deployment
+  labels:
+    app: firesttest
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: firsttest
+  template:
+    metadata:
+      labels:
+        app: firsttest
+    spec:
+      containers:
+      - name: firsttest
+        image: ttalex2/firsttestrepo:2.1
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: firsttest-service2
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+  selector:
+    app: firsttest
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stringcleaner-python-deployment
+  labels:
+    app: stringcleaner-python
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: stringcleaner-python
+  template:
+    metadata:
+      labels:
+        app: stringcleaner-python
+    spec:
+      containers:
+      - name: stringcleaner-python
+        image: ttalex2/stringcleaner_python:1.1
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stringcleaner-python-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: stringcleaner-python
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stringcleaner-go-deployment
+  labels:
+    app: stringcleaner-go
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: stringcleaner-go
+  template:
+    metadata:
+      labels:
+        app: stringcleaner-go
+    spec:
+      containers:
+      - name: stringcleaner-go
+        image: ttalex2/stringcleaner-go:1.1
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stringcleaner-go-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8000
+  selector:
+    app: stringcleaner-go
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stringcleaner-frontend-deployment
+  labels:
+    app: stringcleaner-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: stringcleaner-frontend
+  template:
+    metadata:
+      labels:
+        app: stringcleaner-frontend
+    spec:
+      containers:
+      - name: stringcleaner-frontend
+        image: ttalex2/stringcleaner-frontend:2.3
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stringcleaner-frontend-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3000
+  selector:
+    app: stringcleaner-frontend
+
